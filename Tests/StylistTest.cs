@@ -21,11 +21,6 @@ namespace HairSalon
             Assert.Equal(0, result);
         }
 
-        public void Dispose()
-        {
-            // Client.DeleteAll();
-            Stylist.DeleteAll();
-        }
 
         [Fact]
         public void Equals_ReturnsTrueForSameName_true()
@@ -92,6 +87,11 @@ namespace HairSalon
 
             //Assert
             Assert.Equal(testStylist, foundStylist);
+        }
+        public void Dispose()
+        {
+            // Client.DeleteAll();
+            Stylist.DeleteAll();
         }
     }
 }
