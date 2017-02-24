@@ -62,5 +62,36 @@ namespace HairSalon
             List<Stylist> resultStylistList = Stylist.GetAll();
             Assert.Equal(testStylistList, resultStylistList);
         }
+
+        [Fact]
+        public void GetId_GetsIdForStylist_true()
+        {
+            //Arrange
+            Stylist testStylist = new Stylist("Henry");
+            testStylist.Save();
+
+            //Act
+            Stylist savedStylist = Stylist.GetAll()[0];
+
+            int result = savedStylist.GetId();
+            int testId = testStylist.GetId();
+
+            //Assert
+            Assert.Equal(testId, result);
+        }
+
+        [Fact]
+        public void Find_FindsStylistInDatabase_true()
+        {
+            //Arrange
+            Stylist testStylist = new Stylist("Sally");
+            testStylist.Save();
+
+            //Act
+            Stylist foundStylist = Stylist.Find(testStylist.GetId());
+
+            //Assert
+            Assert.Equal(testStylist, foundStylist);
+        }
     }
 }
