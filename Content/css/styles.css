@@ -1,6 +1,7 @@
 .header1 {
     font-family: 'Quicksand', sans-serif;
     font-size: 100px;
+    color: #D3D3D3
 }
 
 .header2 {
@@ -10,6 +11,7 @@
 
 a {
     font-size: 30px;
+    color: #D3D3D3;
 }
 
 h4 {
@@ -36,6 +38,7 @@ li {
 body {
     font-family: 'Amatic SC', cursive;
    position: relative;
+   background-color: #006767;
 }
 
 .lady {
