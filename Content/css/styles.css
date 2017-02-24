@@ -1,0 +1,37 @@
+.header1 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 100px;
+}
+
+.header2 {
+    font-family: 'Sacramento', cursive;
+    font-size: 140px;
+}
+
+body {
+    font-family: 'Amatic SC', cursive;
+}
+
+a {
+    font-size: 30px;
+}
+
+h4 {
+    font-size: 40px;
+}
+
+p {
+    font-size: 25px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+form {
+    font-size: 25px;
+}
+
+li {
+    list-style-type: none;
+}
