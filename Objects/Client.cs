@@ -78,39 +78,39 @@ namespace HairSalon
         }
 
         public static Client Find(int id)
-       {
-           SqlConnection conn = DB.Connection();
-           conn.Open();
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
 
-           SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE id = @ClientId;", conn);
-           SqlParameter clientIdParameter = new SqlParameter();
-           clientIdParameter.ParameterName = "@ClientId";
-           clientIdParameter.Value = id.ToString();
-           cmd.Parameters.Add(clientIdParameter);
-           SqlDataReader rdr = cmd.ExecuteReader();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE id = @ClientId;", conn);
+            SqlParameter clientIdParameter = new SqlParameter();
+            clientIdParameter.ParameterName = "@ClientId";
+            clientIdParameter.Value = id.ToString();
+            cmd.Parameters.Add(clientIdParameter);
+            SqlDataReader rdr = cmd.ExecuteReader();
 
-           int foundClientId = 0;
-           string foundClientName = null;
-           int foundClientStylistId = 0;
+            int foundClientId = 0;
+            string foundClientName = null;
+            int foundClientStylistId = 0;
 
-           while(rdr.Read())
-           {
-               foundClientId = rdr.GetInt32(0);
-               foundClientName = rdr.GetString(1);
-               foundClientStylistId = rdr.GetInt32(2);
-           }
-           Client foundClient = new Client(foundClientName, foundClientStylistId, foundClientId);
+            while(rdr.Read())
+            {
+                foundClientId = rdr.GetInt32(0);
+                foundClientName = rdr.GetString(1);
+                foundClientStylistId = rdr.GetInt32(2);
+            }
+            Client foundClient = new Client(foundClientName, foundClientStylistId, foundClientId);
 
-           if (rdr != null)
-           {
-               rdr.Close();
-           }
-           if (conn != null)
-           {
-               conn.Close();
-           }
-           return foundClient;
-       }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return foundClient;
+        }
 
         public void Save()
         {
@@ -182,6 +182,26 @@ namespace HairSalon
             {
                 rdr.Close();
             }
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
+
+        public void DeleteClient()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId;", conn);
+
+            SqlParameter clientIdParameter = new SqlParameter();
+            clientIdParameter.ParameterName = "@ClientId";
+            clientIdParameter.Value = this.GetId();
+
+            cmd.Parameters.Add(clientIdParameter);
+            cmd.ExecuteNonQuery();
 
             if (conn != null)
             {
