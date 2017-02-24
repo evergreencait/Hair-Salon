@@ -38,7 +38,7 @@ namespace HairSalon
             };
 
             Post["/clients/new"] = _ => {
-                Client newClient = new Client(Request.Form["client-name"]);
+                Client newClient = new Client(Request.Form["client-name"], Request.Form["cuisine-id"]);
                 newClient.Save();
                 return View["success.cshtml"];
             };
@@ -75,7 +75,7 @@ namespace HairSalon
 
             Delete["client/delete/{id}"] = parameters => {
                 Client SelectedClient = Client.Find(parameters.id);
-                SelectedClient.Delete();
+                SelectedClient.DeleteClient();
                 return View["client_deleted.cshtml"];
             };
         }

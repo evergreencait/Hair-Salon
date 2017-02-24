@@ -1,0 +1,15 @@
+@{
+    Layout="Shared/_Layout.cshtml";
+}
+
+<h1>Your updated client information:</h1>
+<h3 class="client-name">@Model.GetName()</h3>
+
+  <form action="/client/delete/@Model.GetId()" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button type="submit">Delete this client</button>
+  </form>
+  <p><a href="/client/edit/@Model.GetId()" class="links">Update this client's information</a></p>
+  <p id="buttonstyle"><a href="/clients/new" class="links">Add another client</a></p>
+  <p><a href="/" class="links">Go back home</a></p>
+</div>
