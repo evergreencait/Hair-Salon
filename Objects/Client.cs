@@ -55,7 +55,7 @@ namespace HairSalon
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM stylists;", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM clients;", conn);
             SqlDataReader rdr = cmd.ExecuteReader();
 
             while(rdr.Read())
