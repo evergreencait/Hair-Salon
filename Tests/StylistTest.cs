@@ -49,5 +49,18 @@ namespace HairSalon
 
             Assert.Equal(testList, result);
         }
+
+        [Fact]
+        public void GetAll_ReturnListOfAllStylists_true()
+        {
+            Stylist firstStylist = new Stylist("Henry");
+            Stylist secondStylist = new Stylist("Sally");
+            firstStylist.Save();
+            secondStylist.Save();
+
+            List<Stylist> testStylistList = new List<Stylist> {firstStylist, secondStylist};
+            List<Stylist> resultStylistList = Stylist.GetAll();
+            Assert.Equal(testStylistList, resultStylistList);
+        }
     }
 }
