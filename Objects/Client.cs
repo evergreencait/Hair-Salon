@@ -78,37 +78,37 @@ namespace HairSalon
         }
 
         public void Save()
-       {
-           SqlConnection conn = DB.Connection();
-           conn.Open();
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
 
-           SqlCommand cmd = new SqlCommand("INSERT INTO client (name, stylist_id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientStylistId);", conn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, stylist_id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientStylistId);", conn);
 
-           SqlParameter nameParameter = new SqlParameter("@ClientName", this.GetName());
-         
+            SqlParameter nameParameter = new SqlParameter("@ClientName", this.GetName());
 
-           SqlParameter stylistIdParameter = new SqlParameter();
-           stylistIdParameter.ParameterName = "@ClientStylistId";
-           stylistIdParameter.Value = this.GetStylistId();
 
-           cmd.Parameters.Add(nameParameter);
-           cmd.Parameters.Add(stylistIdParameter);
+            SqlParameter stylistIdParameter = new SqlParameter();
+            stylistIdParameter.ParameterName = "@ClientStylistId";
+            stylistIdParameter.Value = this.GetStylistId();
 
-           SqlDataReader rdr = cmd.ExecuteReader();
+            cmd.Parameters.Add(nameParameter);
+            cmd.Parameters.Add(stylistIdParameter);
 
-           while(rdr.Read())
-           {
-               this._id = rdr.GetInt32(0);
-           }
-           if (rdr != null)
-           {
-               rdr.Close();
-           }
-           if (conn != null)
-           {
-               conn.Close();
-           }
-       }
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._id = rdr.GetInt32(0);
+            }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
 
         public static void DeleteAll()
         {
@@ -117,6 +117,41 @@ namespace HairSalon
             SqlCommand cmd = new SqlCommand("DELETE FROM clients;", conn);
             cmd.ExecuteNonQuery();
             conn.Close();
+        }
+
+        public void UpdateName(string newName)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("UPDATE clients SET name = @NewName OUTPUT INSERTED.* WHERE id = @ClientId;", conn);
+
+            SqlParameter newNameParameter = new SqlParameter();
+            newNameParameter.ParameterName = "@NewName";
+            newNameParameter.Value = newName;
+            cmd.Parameters.Add(newNameParameter);
+
+            SqlParameter clientIdParameter = new SqlParameter();
+            clientIdParameter.ParameterName = "@ClientId";
+            clientIdParameter.Value = this.GetId();
+            cmd.Parameters.Add(clientIdParameter);
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._name = rdr.GetString(1);
+
+            }
+
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
         }
 
     }
