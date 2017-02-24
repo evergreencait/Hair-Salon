@@ -8,10 +8,6 @@
     font-size: 140px;
 }
 
-body {
-    font-family: 'Amatic SC', cursive;
-}
-
 a {
     font-size: 30px;
 }
@@ -34,4 +30,22 @@ form {
 
 li {
     list-style-type: none;
+}
+
+
+body {
+    font-family: 'Amatic SC', cursive;
+   position: relative;
+}
+
+.lady {
+    float: right;
+    height: 600px;
+    width: 40%;
+}
+
+.salon {
+    float: left;
+    height: 600px;
+    width: 60%;
 }
