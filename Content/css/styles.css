@@ -60,6 +60,13 @@ body {
 
 }
 
+.ladies {
+    margin-top: 40px;
+    height: 200px;
+    border:2px solid white;
+    border-radius: 50%
+}
+
 .title {
     border: 6px dashed white;
     text-align: center;
